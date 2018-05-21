@@ -1,19 +1,21 @@
-% Read test video
+% Read object template , apply Gaussian filter to reduce noise, normalise the image 
 temp = imgaussfilt(rgb2gray(imread('target_a.jpg')),2);
 temp_norm = temp - mean(mean(temp));
 
+% Initialise row and col matrices to keep track of centers of detection
 r_center=zeros(1,100);
 c_center=zeros(1,100);
-
-
+% Initialize the starting center of a region of search
 r_center(1)=394.5;
 c_center(1)=327.5;
 
+% get frames from read_video_frames.m,Here frames are read from 51 to 120
 for m=51:120
     frames=s(m).cdata;
     g_frames=imgaussfilt(rgb2gray(frames),2);
     mask = zeros(size(g_frames));
-%     %find roi center
+    
+% %find roi center
 
     % region of interest
     y_min = max(floor(r_center(m-50))-400,1);
