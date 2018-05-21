@@ -1,3 +1,4 @@
+% Read test video
 temp = imgaussfilt(rgb2gray(imread('target_a.jpg')),2);
 temp_norm = temp - mean(mean(temp));
 
